@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-canvas: #F7F7F5;
+  --color-panel: #F3F2EF;
+  --color-card: #FCFCFB;
+  --color-border-auralis: #E7E7E4;
+  --color-ink: #111111;
+  --color-ink-secondary: #6B6B6B;
+  --color-surface: #FDF8F8;
+  --color-surface-low: #F7F3F2;
+  --color-surface-variant: #E5E2E1;
+  --color-outline: #747878;
+}
+
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.25, 0.64, 1);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #F7F7F5;
+    color: #111111;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F7F7F5;
+    color: #111111;
+    margin: 0;
+  }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+.font-serif-display {
+  font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+}
+
+.font-script {
+  font-family: 'Caveat', 'Comic Sans MS', cursive;
+}
+
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ==========================================================================
+   ANIMATION KEYFRAMES & UTILITIES (60 FPS & ANTI-SLOP)
+   ========================================================================== */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+  will-change: transform;
+}
+
+.marquee-wrapper:hover .animate-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes orbFloatA {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(18px, -14px) scale(1.06);
+  }
+}
+
+@keyframes orbFloatB {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-16px, 12px) scale(1.04);
+  }
+}
+
+.orb-animate-a {
+  animation: orbFloatA 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+.orb-animate-b {
+  animation: orbFloatB 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Ambient Floating Badges (Hero Section Image Overlays) */
+@keyframes floatBadge1 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes floatBadge2 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatBadge3 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-1 {
+  animation: floatBadge1 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-2 {
+  animation: floatBadge2 7.8s ease-in-out infinite 1.8s;
+  will-change: transform;
+}
+
+.animate-float-3 {
+  animation: floatBadge3 8.5s ease-in-out infinite 3.5s;
+  will-change: transform;
+}
+
+/* Scroll Reveal Utilities - Safe by Default (Never gets stuck invisible) */
+@keyframes autoRevealFallback {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-init {
+  animation: autoRevealFallback 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+.reveal-scale {
+  animation: autoRevealFallback 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+.reveal-slide-left {
+  animation: autoRevealFallback 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+.reveal-init.is-revealed,
+.reveal-scale.is-revealed,
+.reveal-slide-left.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger Delays */
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 110ms; }
+.stagger-3 { animation-delay: 180ms; }
+.stagger-4 { animation-delay: 250ms; }
+.stagger-5 { animation-delay: 320ms; }
+.stagger-6 { animation-delay: 390ms; }
+
+/* Micro-interaction Helpers */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.07);
+}
+
+.btn-press {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-press:active {
+  transform: scale(0.975);
+}
+
+/* Nav Link Hover Underline Indicator */
+.nav-link-indicator {
+  position: relative;
+}
+
+.nav-link-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: #111111;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-indicator:hover::after {
+  transform: scaleX(1);
+}
+
+/* Shimmer Sweep Animation for Accreditation */
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmerSweep 3.5s ease-in-out infinite;
+}
+
+/* Timeline Pulse Beam */
+@keyframes timelinePulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-timeline-pulse {
+  animation: timelinePulse 4s ease-in-out infinite;
+}
+
+/* Modal Pop Animation */
+@keyframes modalPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-pop {
+  animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-init,
+  .reveal-scale,
+  .reveal-slide-left {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .animate-marquee-track,
+  .orb-animate-a,
+  .orb-animate-b,
+  .animate-float-1,
+  .animate-float-2,
+  .animate-float-3,
+  .animate-shimmer,
+  .animate-timeline-pulse,
+  .animate-modal-pop {
+    animation: none !important;
+  }
+}
