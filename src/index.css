@@ -67,6 +67,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -84,64 +85,69 @@
 }
 
 /* ==========================================================================
-   BACKGROUND GRADIENT MESH ORBS (Hardware Accelerated 60 FPS)
+   BACKGROUND GRADIENT MESH ORBS (Hardware Accelerated 60-120 FPS - Zero Blur Lag)
    ========================================================================== */
 
 @keyframes orbFloatA {
   0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(18px, -14px, 0) scale(1.06);
+    transform: translate3d(22px, -16px, 0);
   }
 }
 
 @keyframes orbFloatB {
   0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(-16px, 12px, 0) scale(1.04);
+    transform: translate3d(-18px, 14px, 0);
   }
 }
 
 .orb-animate-a {
-  animation: orbFloatA 9s ease-in-out infinite;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  animation: orbFloatA 12s ease-in-out infinite;
   will-change: transform;
 }
 
 .orb-animate-b {
-  animation: orbFloatB 11s ease-in-out infinite;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  animation: orbFloatB 14s ease-in-out infinite;
   will-change: transform;
 }
 
 /* Ambient Floating Badges (Hero Section Image Overlays) */
 @keyframes floatBadge1 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-5px);
   }
 }
 
 @keyframes floatBadge2 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-6px);
   }
 }
 
 @keyframes floatBadge3 {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-5px);
   }
@@ -191,12 +197,29 @@
 }
 
 /* Stagger Delays for Grouped Elements */
-.stagger-1 { transition-delay: 50ms; }
-.stagger-2 { transition-delay: 110ms; }
-.stagger-3 { transition-delay: 180ms; }
-.stagger-4 { transition-delay: 250ms; }
-.stagger-5 { transition-delay: 320ms; }
-.stagger-6 { transition-delay: 390ms; }
+.stagger-1 {
+  transition-delay: 50ms;
+}
+
+.stagger-2 {
+  transition-delay: 110ms;
+}
+
+.stagger-3 {
+  transition-delay: 180ms;
+}
+
+.stagger-4 {
+  transition-delay: 250ms;
+}
+
+.stagger-5 {
+  transition-delay: 320ms;
+}
+
+.stagger-6 {
+  transition-delay: 390ms;
+}
 
 /* Micro-interaction Helpers */
 .hover-lift {
@@ -243,6 +266,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(200%);
   }
@@ -254,9 +278,12 @@
 
 /* Timeline Pulse Beam */
 @keyframes timelinePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 0.85;
   }
@@ -272,6 +299,7 @@
     opacity: 0;
     transform: scale(0.96) translateY(12px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -293,12 +321,16 @@
 
 /* Accessibility: Prefers Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
   .reveal-init,
   .reveal-scale,
   .reveal-slide-left {
@@ -307,6 +339,7 @@
     transition: none !important;
     animation: none !important;
   }
+
   .animate-marquee-track,
   .orb-animate-a,
   .orb-animate-b,
