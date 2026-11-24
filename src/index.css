@@ -83,6 +83,42 @@
   animation-play-state: paused;
 }
 
+/* ==========================================================================
+   BACKGROUND GRADIENT MESH ORBS (Hardware Accelerated 60 FPS)
+   ========================================================================== */
+
+@keyframes orbFloatA {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -14px, 0) scale(1.06);
+  }
+}
+
+@keyframes orbFloatB {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-16px, 12px, 0) scale(1.04);
+  }
+}
+
+.orb-animate-a {
+  animation: orbFloatA 9s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.orb-animate-b {
+  animation: orbFloatB 11s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
 /* Ambient Floating Badges (Hero Section Image Overlays) */
 @keyframes floatBadge1 {
   0%, 100% {
@@ -272,6 +308,8 @@
     animation: none !important;
   }
   .animate-marquee-track,
+  .orb-animate-a,
+  .orb-animate-b,
   .animate-float-1,
   .animate-float-2,
   .animate-float-3,
