@@ -83,41 +83,13 @@
   animation-play-state: paused;
 }
 
-@keyframes orbFloatA {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate(18px, -14px) scale(1.06);
-  }
-}
-
-@keyframes orbFloatB {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  50% {
-    transform: translate(-16px, 12px) scale(1.04);
-  }
-}
-
-.orb-animate-a {
-  animation: orbFloatA 9s ease-in-out infinite;
-  will-change: transform;
-}
-
-.orb-animate-b {
-  animation: orbFloatB 11s ease-in-out infinite;
-  will-change: transform;
-}
-
 /* Ambient Floating Badges (Hero Section Image Overlays) */
 @keyframes floatBadge1 {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
   }
 }
 
@@ -126,7 +98,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
@@ -135,66 +107,60 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
   }
 }
 
 .animate-float-1 {
-  animation: floatBadge1 6.5s ease-in-out infinite;
-  will-change: transform;
+  animation: floatBadge1 6s ease-in-out infinite;
 }
 
 .animate-float-2 {
-  animation: floatBadge2 7.8s ease-in-out infinite 1.8s;
-  will-change: transform;
+  animation: floatBadge2 7s ease-in-out infinite 1.5s;
 }
 
 .animate-float-3 {
-  animation: floatBadge3 8.5s ease-in-out infinite 3.5s;
-  will-change: transform;
+  animation: floatBadge3 7.5s ease-in-out infinite 3s;
 }
 
-/* Scroll Reveal Utilities - Safe by Default (Never gets stuck invisible) */
-@keyframes autoRevealFallback {
-  0% {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ==========================================================================
+   SCROLL REVEAL ANIMATIONS (Ultra-Smooth 60-120 FPS, GPU-Accelerated)
+   Triggered dynamically by IntersectionObserver as elements scroll into view
+   ========================================================================== */
 
 .reveal-init {
-  animation: autoRevealFallback 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  will-change: opacity, transform;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-scale {
-  animation: autoRevealFallback 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  will-change: opacity, transform;
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-slide-left {
-  animation: autoRevealFallback 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  will-change: opacity, transform;
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* When in viewport */
 .reveal-init.is-revealed,
 .reveal-scale.is-revealed,
 .reveal-slide-left.is-revealed {
   opacity: 1;
-  transform: none;
+  transform: translate(0, 0) scale(1);
 }
 
-/* Stagger Delays */
-.stagger-1 { animation-delay: 50ms; }
-.stagger-2 { animation-delay: 110ms; }
-.stagger-3 { animation-delay: 180ms; }
-.stagger-4 { animation-delay: 250ms; }
-.stagger-5 { animation-delay: 320ms; }
-.stagger-6 { animation-delay: 390ms; }
+/* Stagger Delays for Grouped Elements */
+.stagger-1 { transition-delay: 50ms; }
+.stagger-2 { transition-delay: 110ms; }
+.stagger-3 { transition-delay: 180ms; }
+.stagger-4 { transition-delay: 250ms; }
+.stagger-5 { transition-delay: 320ms; }
+.stagger-6 { transition-delay: 390ms; }
 
 /* Micro-interaction Helpers */
 .hover-lift {
@@ -202,8 +168,8 @@
 }
 
 .hover-lift:hover {
-  transform: translateY(-2.5px);
-  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.07);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.08);
 }
 
 .btn-press {
@@ -306,8 +272,6 @@
     animation: none !important;
   }
   .animate-marquee-track,
-  .orb-animate-a,
-  .orb-animate-b,
   .animate-float-1,
   .animate-float-2,
   .animate-float-3,

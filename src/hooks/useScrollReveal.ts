@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
 /**
- * Lightweight IntersectionObserver hook for viewport-triggered reveals.
- * Safe fallback: reveals all elements if reduced motion or any issue occurs.
+ * 60fps Scroll Reveal Hook using native IntersectionObserver.
+ * Dynamically reveals elements with silky smooth CSS transitions when scrolled into view.
  */
 export function useScrollReveal(deps: unknown[] = []) {
   useEffect(() => {
@@ -12,7 +12,9 @@ export function useScrollReveal(deps: unknown[] = []) {
       const prefersReducedMotion =
         window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const elements = document.querySelectorAll<HTMLElement>('.reveal-init, .reveal-scale, .reveal-slide-left');
+      const elements = document.querySelectorAll<HTMLElement>(
+        '.reveal-init, .reveal-scale, .reveal-slide-left'
+      );
 
       if (prefersReducedMotion || !('IntersectionObserver' in window)) {
         elements.forEach((el) => el.classList.add('is-revealed'));
@@ -29,25 +31,37 @@ export function useScrollReveal(deps: unknown[] = []) {
           });
         },
         {
-          rootMargin: '40px 0px 40px 0px',
-          threshold: 0.05,
+          root: null,
+          rootMargin: '0px 0px -40px 0px',
+          threshold: 0.08,
         }
       );
 
       elements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= (window.innerHeight || document.documentElement.clientHeight) + 80) {
-          el.classList.add('is-revealed');
-        } else {
+        if (!el.classList.contains('is-revealed')) {
           observer.observe(el);
         }
       });
 
+      // Safety timeout: ensure visible elements never get stuck
+      const safetyTimeout = setTimeout(() => {
+        document
+          .querySelectorAll<HTMLElement>(
+            '.reveal-init:not(.is-revealed), .reveal-scale:not(.is-revealed), .reveal-slide-left:not(.is-revealed)'
+          )
+          .forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+              el.classList.add('is-revealed');
+            }
+          });
+      }, 1800);
+
       return () => {
         observer.disconnect();
+        clearTimeout(safetyTimeout);
       };
     } catch {
-      // Fallback: reveal all elements safely
       document.querySelectorAll('.reveal-init, .reveal-scale, .reveal-slide-left').forEach((el) => {
         el.classList.add('is-revealed');
       });

@@ -155,10 +155,9 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
       {/* SECTION 1: HERO SECTION — TONE TERANG (PURE WHITE #FFFFFF) */}
       <section id="hero" className="relative isolate border-b border-[#E7E7E4] bg-white min-h-[calc(100vh-72px)] flex flex-col justify-between pt-8 md:pt-12">
 
-        {/* Background Gradient Mesh Orbs (Persis Sesuai Permintaan User: Terletak di Hero Section) */}
+        {/* Subtle Ambient Background Gradient (Zero-lag, 0% CPU, Native GPU rendering) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10 overflow-hidden">
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-a" />
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-b" />
+          <div className="w-[640px] h-[640px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.06)_0%,rgba(168,85,247,0.04)_40%,transparent_70%)]" />
         </div>
 
         <div className="max-w-[1280px] mx-auto px-6 md:px-8 w-full my-auto py-6 md:py-10">
@@ -166,12 +165,6 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
 
             {/* SEBELAH KIRI: 3 LAPISAN TIPOGRAFI & TOMBOL */}
             <div className="lg:col-span-7 flex flex-col items-start relative isolate">
-
-              {/* Background Orbs Glow di Belakang Tipografi Kiri */}
-              <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none -z-10 opacity-75">
-                <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-a" />
-                <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-b" />
-              </div>
 
               {/* Lapisan 1: Greeting Script / Cursive */}
               <div className="flex items-center gap-2 mb-3 reveal-init stagger-1">
@@ -247,19 +240,12 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
             {/* SEBELAH KANAN: Frame Foto Arby Nassandro & Floating Badges */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end w-full relative">
 
-              {/* Background Orbs Glow tepat di Belakang Kartu Foto Arby */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-a" />
-                <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-b" />
+              {/* Ambient Radial Accent behind Card */}
+              <div className="absolute -inset-4 flex items-center justify-center pointer-events-none z-0">
+                <div className="w-full h-full rounded-3xl bg-[radial-gradient(circle,rgba(59,130,246,0.07)_0%,rgba(168,85,247,0.04)_50%,transparent_75%)]" />
               </div>
 
-              <div className="relative z-10 w-full max-w-[420px] aspect-[4/5] rounded-3xl p-3 sm:p-4 bg-[#FCFCFB]/90 backdrop-blur-sm border border-[#E7E7E4] shadow-[0_20px_50px_-16px_rgba(0,0,0,0.06)] overflow-hidden group hover:border-zinc-300 transition-all reveal-scale stagger-2 hover-lift">
-
-                {/* Background Gradient Mesh Orbs inside Card (Sesuai Style Guide) */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-50 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none">
-                  <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-a" />
-                  <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-b" />
-                </div>
+              <div className="relative z-10 w-full max-w-[420px] aspect-[4/5] rounded-3xl p-3 sm:p-4 bg-white border border-[#E7E7E4] shadow-[0_20px_50px_-16px_rgba(0,0,0,0.06)] overflow-hidden group hover:border-zinc-300 transition-all reveal-scale stagger-2 hover-lift">
 
                 {/* Inner Photo Frame */}
                 <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#F3F2EF] border border-[#E7E7E4] z-10">
@@ -517,16 +503,6 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
 
       {/* SECTION 2.5: PROFESSIONAL EXPERIENCE (TWO-TONE RHYTHM: BG-WHITE) */}
       <section id="experience" className="w-full bg-white border-b border-[#E7E7E4] py-20 md:py-28 relative isolate overflow-hidden">
-        {/* Background Gradient Mesh Orbs (Left Side Accent in Experience Section) */}
-        <div className="absolute top-1/3 left-4 md:left-14 flex items-center justify-center pointer-events-none -z-10 opacity-75">
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-a" />
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-b" />
-        </div>
-        <div className="absolute bottom-1/4 left-8 md:left-24 flex items-center justify-center pointer-events-none -z-10 opacity-55">
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-b" />
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-a" />
-        </div>
-
         <div className="max-w-[1280px] mx-auto px-6 md:px-8">
 
           {/* SECTION HEADER (SESUAI REFERENSI GAMBAR USER) */}
@@ -646,16 +622,6 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
 
       {/* SECTION 4: PROJECTS & CASE STUDIES — TONE AGAK GELAP (#FAFAFA SESUAI RITME DUA WARNA) */}
       <section id="projects" className="w-full bg-[#FAFAFA] border-b border-[#E7E7E4] py-20 md:py-28 relative isolate overflow-hidden">
-        {/* Background Gradient Mesh Orbs (Accent in Projects Section) */}
-        <div className="absolute top-1/4 left-10 md:left-24 flex items-center justify-center pointer-events-none -z-10 opacity-70">
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-a" />
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-b" />
-        </div>
-        <div className="absolute bottom-24 right-10 md:right-28 flex items-center justify-center pointer-events-none -z-10 opacity-55">
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-b" />
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-a" />
-        </div>
-
         <div className="max-w-[1280px] mx-auto px-6 md:px-8">
 
           {/* Section Header with Category Tabs */}
@@ -1687,16 +1653,6 @@ export function HomeScreen({ onNavigate }: HomeScreenProps) {
 
       {/* SECTION 7: CONNECT ME / CONTACT (TWO-TONE RHYTHM: BG-WHITE) */}
       <section id="contact" className="w-full bg-white border-b border-[#E7E7E4] py-20 md:py-28 relative isolate overflow-hidden">
-        {/* Background Gradient Mesh Orbs (Accent in Contact Section) */}
-        <div className="absolute top-1/3 right-10 md:right-28 flex items-center justify-center pointer-events-none -z-10 opacity-75">
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-a" />
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-b" />
-        </div>
-        <div className="absolute bottom-16 left-8 md:left-24 flex items-center justify-center pointer-events-none -z-10 opacity-55">
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 blur-2xl absolute -ml-20 -mt-20 orb-animate-b" />
-          <div className="w-[210px] h-[210px] rounded-full bg-gradient-to-r from-purple-400 to-pink-300 blur-2xl absolute ml-20 mt-20 orb-animate-a" />
-        </div>
-
         <div className="max-w-[1280px] mx-auto px-6 md:px-8">
 
           {/* SECTION HEADER */}
